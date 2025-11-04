@@ -19,6 +19,40 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <style>
+  /* Dark mode button styling */
+  .custom-toggle {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+
+  .custom-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  /* Dark mode theme */
+  body.dark-mode {
+    background-color: #001f3f !important; /* Dark blue */
+    color: #fff !important;
+  }
+
+  .dark-mode .navbar,
+  .dark-mode .card,
+  .dark-mode .sidebar,
+  .dark-mode .dropdown-menu,
+  .dark-mode .bg-white {
+    background-color: #002b5c !important;
+    color: #fff !important;
+  }
+
+  .dark-mode .text-gray-800,
+  .dark-mode .text-gray-600 {
+    color: #e0e0e0 !important;
+  }
+</style>
+
     
        <script>
 (function(apiKey){
@@ -358,6 +392,14 @@
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
+
+                        <!-- Dark Mode Toggle -->
+<li class="nav-item mx-1 d-flex align-items-center">
+  <div id="darkModeToggle" class="custom-toggle" title="Toggle Dark Mode">
+    <i class="fas fa-moon"></i>
+  </div>
+</li>
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -788,6 +830,21 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+
+    <script>
+  const darkToggle = document.getElementById('darkModeToggle');
+  darkToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    // Save preference
+    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+  });
+
+  // Load saved preference
+  if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+  }
+</script>
+
 
 </body>
 
